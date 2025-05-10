@@ -1,14 +1,9 @@
 import { Hono } from "hono";
-import {
-  getUsers,
-  createUsers,
-  getUserById,
-} from "../controllers/user.controller";
+import { getUsers, getUserById } from "../controllers/user.controller";
 
-const userRoute = new Hono();
+const router = new Hono();
 
-userRoute.get("/", getUsers);
-userRoute.get("/:id", getUserById);
-userRoute.post("/", createUsers);
+router.get("/", getUsers);
+router.get("/:id", getUserById);
 
-export default userRoute;
+export default router;
