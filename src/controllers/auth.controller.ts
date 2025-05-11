@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { redis } from "../utils/redis";
+import redis from "../utils/redis";
 import { prisma } from "../config/database";
 import bcrypt from "bcryptjs";
 import { encryptBalance } from "../utils/encryption";
