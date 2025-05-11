@@ -1,18 +1,12 @@
-FROM oven/bun:alpine
+FROM oven/bun:latest
+
+# Install libssl
+RUN apt-get update && apt-get install -y libssl-dev
 
 WORKDIR /app
+COPY . .
 
-COPY package.json .
-COPY bun.lockb .
+RUN bun install
+RUN bunx prisma generate
 
-RUN bun install --production
-
-COPY ./ ./
-
-RUN bunx prisma migrate deploy
-
-ENV ENV=TESTING
-ENV APP_PORT=3615
-CMD ["bun", "src/index.ts"]
-
-EXPOSE 3615
+CMD ["bun", "run", "start"]
